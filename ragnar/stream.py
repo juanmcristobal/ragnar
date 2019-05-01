@@ -44,6 +44,9 @@ class Stream(object):
             self.iter = iter(self.value)
 
     def __rebuild__(self):
+        """
+        This method will regenerate the iterator.
+        """
         if self.repeatable:
             self.iter, self.iter_repeatable = tee(self.iter_repeatable)
 
@@ -60,6 +63,9 @@ class Stream(object):
             raise StopIteration
 
     def __show_next__(self):
+        """
+        This method allows you to treat the item before showing it.
+        """
         item = self.iter.__next__()
 
         if isinstance(item, types.GeneratorType):
@@ -68,9 +74,15 @@ class Stream(object):
         return item
 
     def do(self, func, chain=False):
+        """
+        This method adds a function to apply to the execution stack.
+        """
         self.__stack__.append(type('FunctionFactory', (object,), {'type': 'do', 'fuction': func, 'chain': chain}))
         return self
 
     def filter(self, func):
+        """
+        This method adds a filter to apply to the execution stack.
+        """
         self.__stack__.append(type('FunctionFactory', (object,), {'type': 'filter', 'fuction': func}))
         return self
