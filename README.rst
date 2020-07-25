@@ -6,8 +6,8 @@ ragnar
 .. image:: https://img.shields.io/pypi/v/ragnar.svg
         :target: https://pypi.python.org/pypi/ragnar
 
-.. image:: https://img.shields.io/travis/vikilab/ragnar.svg
-        :target: https://travis-ci.org/vikilab/ragnar
+.. image:: https://img.shields.io/travis/juanmcristobal/ragnar.svg
+        :target: https://travis-ci.org/juanmcristobal/ragnar
 
 .. image:: https://readthedocs.org/projects/ragnar/badge/?version=latest
         :target: https://ragnar.readthedocs.io/en/latest/?badge=latest
