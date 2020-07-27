@@ -18,8 +18,8 @@ setup_requirements = []
 test_requirements = []
 
 setup(
-    author="@juanmcristobal",
-    author_email='@juanmcristobal',
+    author="juanmcristobal",
+    author_email='juanmcristobal@gmail.com',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
