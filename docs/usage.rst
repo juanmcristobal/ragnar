@@ -4,4 +4,4 @@ Usage
 
 To use ragnar in a project::
 
-    import ragnar
+    from ragnar.stream import Stream

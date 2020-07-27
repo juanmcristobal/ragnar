@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* @vikilab <vikilab.library@gmail.com>
+* Juan Manuel Cristóbal Moreno <twitter: @juanmcristobal>
 
 Contributors
 ------------
