@@ -1,0 +1,15 @@
+dist: xenial
+language: python
+python:
+    - 3.8.0
+    - 3.7.3
+    - 3.6
+    - 3.5
+
+install:
+    - pip install -r requirements_dev.txt
+    - pip install -e .
+script:
+    - pytest --cov=ragnar
+after_success:
+    - coveralls
