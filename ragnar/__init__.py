@@ -2,6 +2,6 @@
 
 """Top-level package for ragnar."""
 
-__author__ = """vikilabs"""
-__email__ = 'vikilab.library@gmail.com'
+__author__ = """@juanmcristobal"""
+__email__ = '@juanmcristobal'
 __version__ = '0.3.0'
