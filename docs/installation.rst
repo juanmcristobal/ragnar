@@ -1,51 +1,16 @@
 .. highlight:: shell
 
-============
-Installation
-============
+Installation and Dependencies
+=============================
 
+Ragnar is pure Python and so is easily installable by the standard
+dependency manager ``pip``::
 
-Stable release
---------------
+    pip install ragnar
 
-To install ragnar, run this command in your terminal:
+Ragnar endeavors to be a very light dependency.  It accomplishes this in
+three ways:
 
-.. code-block:: console
-
-    $ pip install ragnar
-
-This is the preferred method to install ragnar, as it will always install the most recent stable release.
-
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
-
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
-
-
-From sources
-------------
-
-The sources for ragnar can be downloaded from the `Github repo`_.
-
-You can either clone the public repository:
-
-.. code-block:: console
-
-    $ git clone git://github.com/juanmcrisobal/ragnar
-
-Or download the `tarball`_:
-
-.. code-block:: console
-
-    $ curl  -OL https://github.com/juanmcrisobal/ragnar/tarball/master
-
-Once you have a copy of the source, you can install it with:
-
-.. code-block:: console
-
-    $ python setup.py install
-
-
-.. _Github repo: https://github.com/juanmcrisobal/ragnar
-.. _tarball: https://github.com/juanmcrisobal/ragnar/tarball/master
+1.  Ragnar is pure Python
+2.  Ragnar relies only on the standard library
+3.  Ragnar simultaneously supports Python versions 3.5+ and PyPy
