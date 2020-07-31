@@ -26,16 +26,28 @@ class Stream(object):
 
         # Func config
         self.__stack__ = []
-        self.__full_stack__ = []
+
+        # storage used for child classes, which will be used to store variables
+        # between to recreate the stream. It is mandatory to store with the same name
+        # as the variable in the child class.
+        self.__set_store__({})
+
+    def __set_store__(self, parameter):
+        self.__store__ = type("Store", (object,), parameter)
+
+    def __regenerate_store__(self):
+        for key in vars(self.__store__).keys():
+            if not key.startswith("__"):
+                setattr(self, key, getattr(self.__store__, key))
 
     def __build__(self):
         for stack in self.__stack__:
-            if stack.type == 'do':
+            if stack.type == "do":
                 if stack.chain:
                     self.value = chain(*func_cat(self.value, stack.fuction))
                 else:
                     self.value = func_cat(self.value, stack.fuction)
-            if stack.type == 'filter':
+            if stack.type == "filter":
                 self.value = filter(stack.fuction, self.value)
 
         if self.repeatable:
@@ -48,6 +60,7 @@ class Stream(object):
         This method will regenerate the iterator.
         """
         if self.repeatable:
+            self.__regenerate_store__()
             self.iter, self.iter_repeatable = tee(self.iter_repeatable)
 
     def __iter__(self):
@@ -77,12 +90,20 @@ class Stream(object):
         """
         This method adds a function to apply to the execution stack.
         """
-        self.__stack__.append(type('FunctionFactory', (object,), {'type': 'do', 'fuction': func, 'chain': chain}))
+        self.__stack__.append(
+            type(
+                "FunctionFactory",
+                (object,),
+                {"type": "do", "fuction": func, "chain": chain},
+            )
+        )
         return self
 
     def filter(self, func):
         """
         This method adds a filter to apply to the execution stack.
         """
-        self.__stack__.append(type('FunctionFactory', (object,), {'type': 'filter', 'fuction': func}))
+        self.__stack__.append(
+            type("FunctionFactory", (object,), {"type": "filter", "fuction": func})
+        )
         return self
