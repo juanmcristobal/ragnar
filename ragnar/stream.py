@@ -16,9 +16,16 @@ def func_cat(value, *forms):
 
 
 class Stream(object):
-    def __init__(self, value, repeatable=False):
+    def __init__(self, value, **kwargs):
         self.value = value
-        self.repeatable = repeatable
+
+        # storage used for child classes, which will be used to store variables
+        # between to recreate the stream. It is mandatory to store with the same name
+        # as the variable in the child class.
+        self.__set_store__(dict(kwargs))
+
+        # working variables
+        self.repeatable = kwargs.pop("repeatable", None)
 
         # Iterator config
         self.iter = None
@@ -27,12 +34,12 @@ class Stream(object):
         # Func config
         self.__stack__ = []
 
-        # storage used for child classes, which will be used to store variables
-        # between to recreate the stream. It is mandatory to store with the same name
-        # as the variable in the child class.
-        self.__set_store__({})
-
-    def __set_store__(self, parameter):
+    def __set_store__(self, parameter: dict):
+        """
+        Method that stores the initial settings for the Stream.
+        :param parameter: A dictionary taken from the arguments **kwargs
+        :return: None
+        """
         self.__store__ = type("Store", (object,), parameter)
 
     def __regenerate_store__(self):
