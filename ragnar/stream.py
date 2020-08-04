@@ -93,11 +93,14 @@ class Stream(object):
 
         return item
 
+    def __add_to_stack__(self, function_factory):
+        self.__stack__.append(function_factory)
+
     def do(self, func, chain=False):
         """
         This method adds a function to apply to the execution stack.
         """
-        self.__stack__.append(
+        self.__add_to_stack__(
             type(
                 "FunctionFactory",
                 (object,),
