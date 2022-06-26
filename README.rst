@@ -16,10 +16,7 @@ Ragnar
 .. image:: https://coveralls.io/repos/github/juanmcristobal/ragnar/badge.svg?branch=master
 	:target: https://coveralls.io/github/juanmcristobal/ragnar?branch=master
 
-
-
-Ragnar is a lightweight Extract-Transform-Load (ETL) framework for Python 3.5+.
-
+Ragnar is a lightweight Extract-Transform-Load (ETL) framework for Python 3.8+.
 
 * Free software: MIT license
 * Documentation: https://ragnar.readthedocs.io.

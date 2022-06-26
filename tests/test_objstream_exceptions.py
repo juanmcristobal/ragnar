@@ -9,9 +9,9 @@ from tests.helpers.utils import generate_mock_list
 RECORDS = 1000
 HEADERS = ["idx", "date1", "date2", "uuid", "file", "user_agent", "credit_card_full"]
 
-date_func = lambda x: datetime.strptime(x, "%b %d %Y %H:%M:%S").strftime(
-    "%Y-%m-%d %H:%M:%S"
-)
+
+def date_func(x):
+    return datetime.strptime(x, "%b %d %Y %H:%M:%S").strftime("%Y-%m-%d %H:%M:%S")
 
 
 def test_column_exception_in_dict_stream():
@@ -21,7 +21,8 @@ def test_column_exception_in_dict_stream():
     )
 
     obj.applyto(
-        "date1", date_func,
+        "date1",
+        date_func,
     )
     with pytest.raises(Exception):
         for _ in obj:
