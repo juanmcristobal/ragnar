@@ -24,6 +24,11 @@ author = 'Juan Manuel Cristóbal Moreno'
 # The full version, including alpha/beta/rc tags
 release = 'MIT'
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../..'))
+
+import ragnar
 
 # -- General configuration ---------------------------------------------------
 
