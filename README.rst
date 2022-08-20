@@ -2,18 +2,18 @@
 Ragnar
 ======
 
-.. image:: https://img.shields.io/pypi/v/ragnar.svg
-        :target: https://pypi.python.org/pypi/ragnar
-
 .. image:: https://github.com/juanmcristobal/ragnar/actions/workflows/test.yml/badge.svg?branch=master
         :target: (https://github.com/juanmcristobal/ragnar/actions/workflows/test.yml
 
-.. image:: https://readthedocs.org/projects/ragnar/badge/?version=latest
-        :target: https://ragnar.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
 .. image:: https://coveralls.io/repos/github/juanmcristobal/ragnar/badge.svg?branch=master
     :target: https://coveralls.io/github/juanmcristobal/ragnar?branch=master
+
+.. image:: https://img.shields.io/pypi/v/ragnar.svg
+        :target: https://pypi.python.org/pypi/ragnar
+
+.. image:: https://readthedocs.org/projects/ragnar/badge/?version=latest
+        :target: https://ragnar.readthedocs.io/en/latest
+        :alt: Documentation Status
 
 Ragnar is a lightweight Extract-Transform-Load (ETL) framework for Python 3.5+.
 
