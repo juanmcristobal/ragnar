@@ -5,6 +5,9 @@ Ragnar
 .. image:: https://img.shields.io/pypi/v/ragnar.svg
         :target: https://pypi.python.org/pypi/ragnar
 
+.. image:: https://github.com/juanmcristobal/ragnar/actions/workflows/test.yml/badge.svg?branch=master
+        :target: (https://github.com/juanmcristobal/ragnar/actions/workflows/test.yml
+
 .. image:: https://readthedocs.org/projects/ragnar/badge/?version=latest
         :target: https://ragnar.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
