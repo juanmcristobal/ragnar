@@ -3,7 +3,7 @@ import glob
 import tempfile
 
 from ragnar.generators import read_file, gen_strip, read_csv
-from ragnar.stream import Stream
+from ragnar.objstream import ObjStream
 from .helpers.utils import generate_mock_file
 
 NUM_FILES = 10
@@ -29,7 +29,7 @@ def mock_files(tmpdir_factory):
 
 
 def test_iter_simple_no_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]))
+    stream = ObjStream(glob.glob(mock_files["dirpath"]))
     result = [rst for rst in stream]
     assert result == glob.glob(mock_files["dirpath"])
     # No repeatable
@@ -38,7 +38,7 @@ def test_iter_simple_no_repeatable(mock_files):
 
 
 def test_iter_simple_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]), repeatable=True)
+    stream = ObjStream(glob.glob(mock_files["dirpath"]), repeatable=True)
     result = [rst for rst in stream]
     assert result == glob.glob(mock_files["dirpath"])
     # Repeatable
@@ -47,7 +47,7 @@ def test_iter_simple_repeatable(mock_files):
 
 
 def test_single_do_no_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]))
+    stream = ObjStream(glob.glob(mock_files["dirpath"]))
     stream.do(read_file, chain=True)
     stream.do(gen_strip)
     assert len([i for i in stream]) == NUM_FILES * NUM_LINES
@@ -55,28 +55,28 @@ def test_single_do_no_repeatable(mock_files):
 
 
 def test_simple_do_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]), repeatable=True)
+    stream = ObjStream(glob.glob(mock_files["dirpath"]), repeatable=True)
     stream.do(read_csv, chain=True)
     assert len([i for i in stream]) == NUM_FILES * NUM_LINES
     assert len([i for i in stream]) == NUM_FILES * NUM_LINES
 
 
 def test_single_do_no_repeatable_nochain(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]))
+    stream = ObjStream(glob.glob(mock_files["dirpath"]))
     stream.do(read_file)
     assert len([i for i in stream]) == NUM_FILES
     assert len([i for i in stream]) == 0
 
 
 def test_single_do_repeatable_nochain(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]), repeatable=True)
+    stream = ObjStream(glob.glob(mock_files["dirpath"]), repeatable=True)
     stream.do(read_file)
     assert len([i for i in stream]) == NUM_FILES
     assert len([i for i in stream]) == NUM_FILES
 
 
 def test_simple_filter_no_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]))
+    stream = ObjStream(glob.glob(mock_files["dirpath"]))
     stream.do(read_file, chain=True)
     stream.filter(lambda line: not line.startswith("9"))
     assert (
@@ -86,7 +86,7 @@ def test_simple_filter_no_repeatable(mock_files):
 
 
 def test_simple_filter_repeatable(mock_files):
-    stream = Stream(glob.glob(mock_files["dirpath"]), repeatable=True)
+    stream = ObjStream(glob.glob(mock_files["dirpath"]), repeatable=True)
     stream.do(read_file, chain=True)
     stream.filter(lambda line: not line.startswith("9"))
     assert (
