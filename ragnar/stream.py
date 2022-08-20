@@ -16,6 +16,15 @@ def func_cat(value, *forms):
 
 
 class Stream(object):
+    """This object brings together the advantages of generators and the functional programming paradigm.
+    Stream is an object that allows accumulating actions to be applied to a dataset.
+
+    :param repeatable: This parameter is used to enable repeating iterations if `'True'` allows to iterate as many
+                       times as required
+    :type repeatable: bool, optional
+
+    """
+
     def __init__(self, value, **kwargs):
         self.value = value
 
@@ -25,7 +34,7 @@ class Stream(object):
         self.__set_store__(dict(kwargs))
 
         # working variables
-        self.repeatable = kwargs.pop("repeatable", None)
+        self.repeatable = kwargs.pop("repeatable", False)
 
         # Iterator config
         self.iter = None
@@ -99,6 +108,12 @@ class Stream(object):
     def do(self, func, chain=False):
         """
         This method adds a function to apply to the execution stack.
+
+        :param func: method to be included in the execution stack
+        :param chain: The results are merged into a single dataset. For example if you read multiple
+                      files the results are merged to loop like a single list.
+        :type chain: bool, optional
+
         """
         self.__add_to_stack__(
             type(
@@ -112,6 +127,9 @@ class Stream(object):
     def filter(self, func):
         """
         This method adds a filter to apply to the execution stack.
+
+        :param func: method to be included in the execution stack. It must be a function that returns a boolean value,
+                     otherwise the filter is not applied.
         """
         self.__stack__.append(
             type("FunctionFactory", (object,), {"type": "filter", "fuction": func})

@@ -1,13 +1,24 @@
+from typing import Union
+
 from ragnar.stream import Stream
 from functools import partial
 import types
 
 
 class ObjStream(Stream):
+    """This object inherits from the Stream object, specific for record-based data.
+
+    :param columns: Object headers.
+    :type repeatable: list
+
+    :param skip_first: 0mits the first row (usually headers)
+    :type repeatable: bool, optional
+
+    """
     def __init__(self, value, **kwargs):
         super().__init__(value, **kwargs)
         self.is_dict_source = None
-        self.skip_first = kwargs.pop("skip_first", None)
+        self.skip_first = kwargs.pop("skip_first", False)
         self.columns = kwargs.pop("columns", None)
 
     def __applyto_func__(self, row, **kwargs):
@@ -72,7 +83,20 @@ class ObjStream(Stream):
             self.__rebuild__()
             raise StopIteration
 
-    def applyto(self, fields, func, entire_object=False):
+    def applyto(self, fields: Union[str, list], func, entire_object=False):
+        """
+        This method adds a function to apply to the execution stack.
+
+        :param fields: fields where to apply the function.
+        :type fields: typing.Union[list, str]
+
+        :param func: method to be included in the execution stack
+
+        :param entire_object: passing the field or the entire record as a dictionary to the function
+        :type entire_object: bool, optional
+
+        """
+
         columns = getattr(self, "columns", None)
         idxs = []
         cols = []
